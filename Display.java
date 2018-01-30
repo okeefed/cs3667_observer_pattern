@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Display implements Observer, DisplayElement {
     private int rate;
-
+    private String history;
     public Display(Observable observable) {
         observable.addObserver(this);
     }
@@ -14,6 +14,7 @@ public class Display implements Observer, DisplayElement {
         if(observable instanceof HeartRate){
             HeartRate heart = (HeartRate)observable;
             rate = heart.getRate();
+            history = heart.getHistory();
             if(rate > 120 || rate < 40)
             {
                 System.out.println("WARNING HEART RATE IS IN DANGER SPOT");
@@ -36,6 +37,9 @@ public class Display implements Observer, DisplayElement {
         s+="^";
         System.out.println(s);
         System.out.println("0          30          60          90          120         150         180         210");
+        System.out.println("Heart Rate History");
+        System.out.println("Timestamp   Value");
+        System.out.println(history);
         System.out.println("");
         System.out.println("");
     }
